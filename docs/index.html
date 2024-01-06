@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<title>芳香族マスター</title>
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:title" content="芳香族マスター" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./ogp.png" />
+    <meta name="description" content="高校の化学で学習する「芳香族」の主な反応図をノード・リンク図にて、可視化しました。覚える内容が多いですが、まとめて覚えてしまいましょう。" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="芳香族マスター" />
+    <meta name="twitter:image" content="./ogp.png" />
+    <meta name="author" content="仁志">
+    <meta name="keywords" content="芳香族,ベンゼン,化学,ノードリンク図,node,link" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="icon" href="images/apple-touch-icon.png">
+
+    <!-- Katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+        integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+        integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+        crossorigin="anonymous"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"
+        integrity="sha384-ifpG+NlgMq0kvOSGqGQxW1mJKpjjMDmZdpKGq3tbvD3WPhyshCEEYClriK/wRVU0"
+        crossorigin="anonymous"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+        crossorigin="anonymous"></script>
+
+    <!-- $などで囲うために必要 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: "\\[", right: "\\]", display: true },
+                    { left: "$", right: "$", display: false }
+                ]
+            });
+        });
+    </script>
+
+    <!-- FontAwesome -->
+    <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script type="module">
+
+        document.getElementById("cyclohexane").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!cyclohexane" border="0"></iframe>'
+        document.getElementById("benzene").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!benzene" border="0"></iframe>'
+        document.getElementById("acetylene").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!acetylene" border="0"></iframe>'
+        document.getElementById("hexachlorocyclohexane").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!hexachlorocyclohexane" border="0"></iframe>'
+        /* ツールチップ */
+        window.tooltip = x => { $("#" + x).slideToggle(500); }
+        window.reaction_tip = x => { $("#reaction" + x).slideToggle(500); }
+        window.abstract = () => { $("#abs").slideToggle(500); }
+
+    </script>
+
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+    <h1>芳香族マスター</h1>
+
+    <div class="first" onclick="abstract();">はじめに</div>
+
+    <div class="abstract" id="abs">
+        高校の化学で学習する「芳香族化合物」。ベンゼンを初めに、化合物名、反応式、付加反応・置換反応、スルホン化などの反応名と覚える項目が多く、悩む学生さん達が多いと思います。このノード・リンク図は、そんな芳香族をまとめて覚えてしまおう！という名目のもと、開発しました。多くの方々にご覧いただければ幸いです。
+    </div>
+
+    <div class="container">
+
+        <!-- aromatic -->
+        <div class="feature top15 left167" onclick="tooltip(1);">性　質</div>
+        <div class="node top50 left10">シクロヘキサン, $\ce{C6H12}$
+            <p class="tooltip" id="1">テキストボックス1のツールチップ</p>
+            <div id="cyclohexane"></div>
+        </div>
+
+
+        <div class="feature top365 left167" onclick="tooltip(2);">性　質</div>
+        <div class="node top400 left10">アセチレン, $\ce{CH\bond{3}CH}$
+            <p class="tooltip" id="2">テキストボックス2のツールチップ</p>
+            <div id="acetylene">
+            </div>
+        </div>
+
+        <div class="feature top365 left687" onclick="tooltip(3);">性　質</div>
+        <div class="node top400 left530">ベンゼン, $\ce{C6H6}$
+            <p class="tooltip" id="3">テキストボックス3のツールチップ</p>
+            <div id="benzene">
+            </div>
+        </div>
+
+        <div class="feature top715 left167" onclick="tooltip(4);">性　質</div>
+        <div class="node top750 left10">ヘキサクロロシクロヘキサン, $\ce{C6H6Cl6}$
+            <p class="tooltip" id="4">テキストボックス4のツールチップ</p>
+            <div id="hexachlorocyclohexane">
+            </div>
+        </div>
+
+        <!-- aromatic -->
+
+        <!-- link -->
+        <div class="link top315 left240" style="transform-origin: 0% 0%; transform: rotate(35deg);">
+            <div class="arrow_left arrow35"></div>
+        </div>
+
+        <div class="link_abstract" style="top: 370px; left: 350px;">$\ce{H2・Ni}$ 触媒</div>
+        <div class="link_abstract" style="top: 400px; left: 395px;">付加反応</div>
+        <div class="reaction" style="top: 435px; left: 310px;" onclick="reaction_tip(1);">反応式
+            <p class="reaction_tip" id="reaction1">$\ce{ C6H6 + 3H2 -> C6H12 }$</p>
+        </div>
+
+
+        <div class="link top540 left240">
+            <div class="arrow_right" style="top: -11px; left: 250px;"></div>
+        </div>
+        <div class="link_abstract top540 left360">赤熱鉄管</div>
+
+        <!-- link -->
+
+        <div class="footer">仁志</div>
+    </div><!-- container -->
+
+
+
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPP84V2NHB"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'G-MPP84V2NHB');
+        </script>
+</body>
+
+</html>
