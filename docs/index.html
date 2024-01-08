@@ -55,12 +55,12 @@
 
     <script type="module">
 
-        document.getElementById("cyclohexane").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!cyclohexane" border="0"></iframe>'
-        document.getElementById("benzene").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!benzene" border="0"></iframe>'
-        document.getElementById("acetylene").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!acetylene" border="0"></iframe>'
-        document.getElementById("hexachlorocyclohexane").innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!hexachlorocyclohexane" border="0"></iframe>'
+        for (let i = 1; i < 5; i++){
+            document.getElementById("aromatic" + i ).innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!aromatic' + i + '" border="0"></iframe>'
+        }
+
         /* ツールチップ */
-        window.tooltip = x => { $("#" + x).slideToggle(500); }
+        window.tooltip = x => { $("#tooltip" + x).slideToggle(500); }
         window.reaction_tip = x => { $("#reaction" + x).slideToggle(500); }
         window.abstract = () => { $("#abs").slideToggle(500); }
 
@@ -83,29 +83,29 @@
         <!-- aromatic -->
         <div class="feature top15 left167" onclick="tooltip(1);">性　質</div>
         <div class="node top50 left10">シクロヘキサン, $\ce{C6H12}$
-            <p class="tooltip" id="1">テキストボックス1のツールチップ</p>
-            <div id="cyclohexane"></div>
+            <p class="tooltip" id="tooltip1">テキストボックス1のツールチップ</p>
+            <div id="aromatic1"></div>
         </div>
 
 
         <div class="feature top365 left167" onclick="tooltip(2);">性　質</div>
         <div class="node top400 left10">アセチレン, $\ce{CH\bond{3}CH}$
-            <p class="tooltip" id="2">テキストボックス2のツールチップ</p>
-            <div id="acetylene">
+            <p class="tooltip" id="tooltip2">テキストボックス2のツールチップ</p>
+            <div id="aromatic2">
             </div>
         </div>
 
         <div class="feature top365 left687" onclick="tooltip(3);">性　質</div>
         <div class="node top400 left530">ベンゼン, $\ce{C6H6}$
-            <p class="tooltip" id="3">テキストボックス3のツールチップ</p>
-            <div id="benzene">
+            <p class="tooltip" id="tooltip3">テキストボックス3のツールチップ</p>
+            <div id="aromatic3">
             </div>
         </div>
 
         <div class="feature top715 left167" onclick="tooltip(4);">性　質</div>
         <div class="node top750 left10">ヘキサクロロシクロヘキサン, $\ce{C6H6Cl6}$
-            <p class="tooltip" id="4">テキストボックス4のツールチップ</p>
-            <div id="hexachlorocyclohexane">
+            <p class="tooltip" id="tooltip4">テキストボックス4のツールチップ</p>
+            <div id="aromatic4">
             </div>
         </div>
 
@@ -116,7 +116,7 @@
             <div class="arrow_left arrow35"></div>
         </div>
 
-        <div class="link_abstract" style="top: 370px; left: 350px;">$\ce{H2・Ni}$ 触媒</div>
+        <div class="link_abstract" style="top: 370px; left: 350px;">$\ce{H2、Ni・Pt}$ 触媒</div>
         <div class="link_abstract" style="top: 400px; left: 395px;">付加反応</div>
         <div class="reaction" style="top: 435px; left: 310px;" onclick="reaction_tip(1);">反応式
             <p class="reaction_tip" id="reaction1">$\ce{ C6H6 + 3H2 -> C6H12 }$</p>
