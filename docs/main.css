@@ -50,6 +50,7 @@ h1 {
     padding: 0;
     margin: 0;
     height: 2500px;
+    width: 2500px;
 
 }
 
@@ -109,6 +110,14 @@ h1 {
     top: 750px;
 }
 
+.top1065{
+    top: 1065px;
+}
+
+.top1100{
+    top: 1100px;
+}
+
 .left10{
     left: 10px;
 }
@@ -136,6 +145,17 @@ h1 {
 .left687{
     left: 687px;
 }
+
+.left1100{
+    left: 1100px;
+}
+
+.left1257{
+    left: 1257px;
+}
+
+
+
 
 .link {
     position: absolute;
@@ -174,11 +194,6 @@ h1 {
     color: #ccc;
     margin: 0;
     padding: 0;
-}
-
-.arrow35{
-    top: -11px;
-    left: 70px;
 }
 
 .reaction {
