@@ -55,8 +55,8 @@
 
     <script type="module">
 
-        for (let i = 1; i < 5; i++){
-            document.getElementById("aromatic" + i ).innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!aromatic' + i + '" border="0"></iframe>'
+        for (let i = 1; i < 5; i++) {
+            document.getElementById("aromatic" + i).innerHTML = '<iframe width="220px" height = "240px" src ="./pdb.html#!aromatic' + i + '" border="0"></iframe>'
         }
 
         /* ツールチップ */
@@ -66,7 +66,214 @@
 
     </script>
 
-    <link rel="stylesheet" href="./main.css">
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: "Meiryo", "Hiragino Maru Gothic Pro", sans-serif;
+        }
+
+        body {
+            margin-bottom: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin: 10px 0 0 10px;
+            padding: 0;
+        }
+
+        .first {
+            position: absolute;
+            top: 70px;
+            left: 10px;
+            background-color: #1e50a2;
+            color: #ffffff;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .first::after {
+            font-family: "Font Awesome 5 Free";
+            content: ' \f0da';
+            font-weight: 900;
+        }
+
+        .abstract {
+            display: none;
+            width: 500px;
+            position: absolute;
+            top: 70px;
+            left: 100px;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 2px solid #89c3eb;
+            color: #000;
+            font-size: 15px;
+            z-index: 100;
+        }
+
+        .container {
+            position: relative;
+            top: 45px;
+            padding: 0;
+            margin: 0;
+            height: 2500px;
+            width: 2500px;
+
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 10px;
+        }
+
+        .node {
+            width: 250px;
+            height: 280px;
+            border: 2px solid #1e50a2;
+            background-color: #ffffff;
+            text-align: center;
+            position: absolute;
+            z-index: 5;
+            margin: 0 auto;
+        }
+
+        .node div {
+            position: absolute;
+            top: 38px;
+            left: 26px;
+            z-index: 5;
+        }
+
+
+        .link {
+            position: absolute;
+            background-color: #ccc;
+            width: 400px;
+            height: 2px;
+            z-index: 0;
+        }
+
+        .link_abstract {
+            position: absolute;
+            z-index: 0;
+        }
+
+        .arrow_left::before {
+            font-family: "Font Awesome 5 Free";
+            content: '\f053';
+            font-weight: 900;
+        }
+
+        .arrow_left {
+            position: absolute;
+            color: #ccc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .arrow_right::after {
+            font-family: "Font Awesome 5 Free";
+            content: '\f054';
+            font-weight: 900;
+        }
+
+        .arrow_right {
+            position: absolute;
+            color: #ccc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .reaction {
+            position: absolute;
+            background: #006e54;
+            padding: 3px 5px 3px 5px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .reaction::after {
+            font-family: "Font Awesome 5 Free";
+            content: '\f0c1';
+            font-weight: 900;
+            padding-left: 5px;
+        }
+
+        .feature {
+            position: absolute;
+            background: #1e50a2;
+            color: #ffffff;
+            padding: 3px 5px 3px 5px;
+            cursor: pointer;
+
+        }
+
+        .feature::before {
+            font-family: "Font Awesome 5 Free";
+            content: '\f0c3';
+            font-weight: 900;
+            padding-right: 5px;
+
+        }
+
+        .feature::after {
+            font-family: "Font Awesome 5 Free";
+            content: '\f492';
+            font-weight: 900;
+            padding-left: 5px;
+        }
+
+        iframe {
+            margin: 10px 0 0 0;
+            padding: 0;
+            border: none;
+        }
+
+        .tooltip {
+            width: 250px;
+            line-height: 50px;
+            padding: 5px;
+            margin: -30px 0 0;
+            background-color: #fef263;
+            color: #000;
+            font-size: 12px;
+            position: absolute;
+            right: -270px;
+            top: 30px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .tooltip:before {
+            right: 100%;
+            top: 30px;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            border-color: rgba(102, 102, 102, 0);
+            border-right-color: #fef263;
+            border-width: 8px;
+            margin-top: -8px;
+        }
+
+        .reaction_tip {
+            max-width: 200px;
+            padding: 10px;
+            margin: 0;
+            background-color: #fef263;
+            color: #000;
+            position: absolute;
+            left: 5px;
+            top: 40px;
+            display: none;
+            z-index: 100;
+        }
+    </style>
 </head>
 
 <body>
@@ -81,67 +288,87 @@
     <div class="container">
 
         <!-- aromatic -->
-        <div class="feature top15 left167" onclick="tooltip(1);">性　質</div>
-        <div class="node top50 left10">シクロヘキサン, $\ce{C6H12}$
+        <div class="feature" style="top:15px; left:167px;" onclick="tooltip(1);">性　質</div>
+        <div class="node" style="top:50px; left:10px;">シクロヘキサン, $\ce{C6H12}$
             <p class="tooltip" id="tooltip1">テキストボックスのツールチップ</p>
             <div id="aromatic1"></div>
         </div>
 
 
-        <div class="feature top365 left167" onclick="tooltip(2);">性　質</div>
-        <div class="node top400 left10">アセチレン, $\ce{CH\bond{3}CH}$
+        <div class="feature" style="top:365px; left:167px;" onclick="tooltip(2);">性　質</div>
+        <div class="node" style="top:400px; left:10px;">アセチレン, $\ce{CH\bond{3}CH}$
             <p class="tooltip" id="tooltip2">テキストボックスのツールチップ</p>
             <div id="aromatic2">
             </div>
         </div>
 
-        <div class="feature top365 left687" onclick="tooltip(3);">性　質</div>
-        <div class="node top400 left530">ベンゼン, $\ce{C6H6}$
+        <div class="feature" style="top:365px; left:687px;" onclick="tooltip(3);">性　質</div>
+        <div class="node" style="top:400px; left:530px;">ベンゼン, $\ce{C6H6}$
             <p class="tooltip" id="tooltip3">テキストボックスのツールチップ</p>
             <div id="aromatic3">
             </div>
         </div>
 
-        <div class="feature top715 left167" onclick="tooltip(4);">性　質</div>
-        <div class="node top750 left10">ヘキサクロロシクロヘキサン, $\ce{C6H6Cl6}$
+        <div class="feature" style="top:715px; left:167px;" onclick="tooltip(4);">性　質</div>
+        <div class="node" style="top:750px; left:10px;">ヘキサクロロシクロヘキサン, $\ce{C6H6Cl6}$
             <p class="tooltip" id="tooltip4">テキストボックスのツールチップ</p>
             <div id="aromatic4">
             </div>
         </div>
 
-        <div class="feature top15 left1257" onclick="tooltip(5);">性　質</div>
-        <div class="node top50 left1100">ニトロベンゼン, $\ce{C6H6NO2}$
+        <div class="feature" style="top:15px; left:1257px;" onclick="tooltip(5);">性　質</div>
+        <div class="node" style="top:50px; left:1100px;">ニトロベンゼン, $\ce{C6H6NO2}$
             <p class="tooltip" id="tooltip5">テキストボックスのツールチップ</p>
-            <div id="aromatic4">
+            <div id="aromatic5">
             </div>
         </div>
 
-        <div class="feature top365 left1257" onclick="tooltip(5);">性　質</div>
-        <div class="node top400 left1100">ベンゼンスルホン酸, $\ce{C6H6SO3H}$
-            <p class="tooltip" id="tooltip5">テキストボックスのツールチップ</p>
-            <div id="aromatic4">
+        <div class="feature" style="top:365px; left:1257px;" onclick="tooltip(6);">性　質</div>
+        <div class="node" style="top:400px; left:1100px;">ベンゼンスルホン酸, $\ce{C6H6SO3H}$
+            <p class="tooltip" id="tooltip6">テキストボックスのツールチップ</p>
+            <div id="aromatic6">
             </div>
         </div>
 
-        <div class="feature top715 left1257" onclick="tooltip(5);">性　質</div>
-        <div class="node top750 left1100">クロロベンゼン, $\ce{C6H6Cl}$
-            <p class="tooltip" id="tooltip5">テキストボックスのツールチップ</p>
-            <div id="aromatic4">
+        <div class="feature" style="top:715px; left:1257px;" onclick="tooltip(7);">性　質</div>
+        <div class="node" style="top:750px; left:1100px;">クロロベンゼン, $\ce{C6H6Cl}$
+            <p class="tooltip" id="tooltip7">テキストボックスのツールチップ</p>
+            <div id="aromatic7">
             </div>
         </div>
 
-        <div class="feature top1065 left1257" onclick="tooltip(5);">性　質</div>
-        <div class="node top1100 left1100">クメン, $\ce{C6H6CH(CH3)2}$
-            <p class="tooltip" id="tooltip5">テキストボックスのツールチップ</p>
-            <div id="aromatic4">
+        <div class="feature" style="top:1065px; left:1257px;" onclick="tooltip(8);">性　質</div>
+        <div class="node" style="top:1100px; left:1100px;">クメン, $\ce{C6H6CH(CH3)2}$
+            <p class="tooltip" id="tooltip8">テキストボックスのツールチップ</p>
+            <div id="aromatic8">
             </div>
         </div>
 
+        <div class="feature" style="top:15px; left:1807px;" onclick="tooltip(9);">性　質</div>
+        <div class="node" style="top:50px; left:1650px;">アニリン塩酸塩, $\ce{CC6H8ClN}$
+            <p class="tooltip" id="tooltip9">テキストボックスのツールチップ</p>
+            <div id="aromatic9">
+            </div>
+        </div>
+
+        <div class="feature" style="top:365px; left:1807px;" onclick="tooltip(10);">性　質</div>
+        <div class="node" style="top:400px; left:1650px;">ナトリウムフェノキシド, $\ce{C6H5NaO}$
+            <p class="tooltip" id="tooltip10">テキストボックスのツールチップ</p>
+            <div id="aromatic10">
+            </div>
+        </div>
+
+        <div class="feature" style="top:1065px; left:1807px;" onclick="tooltip(11);">性　質</div>
+        <div class="node" style="top:1100px; left:1650px;">クメンヒドロペルオキシド, $\ce{C9H12O2}$
+            <p class="tooltip" id="tooltip11">テキストボックスのツールチップ</p>
+            <div id="aromatic11">
+            </div>
+        </div>
 
         <!-- aromatic -->
 
         <!-- link -->
-        <div class="link top315 left240" style="transform-origin: 0% 0%; transform: rotate(35deg);">
+        <div class="link" style="top:315px; left:240px; transform-origin: 0% 0%; transform: rotate(35deg);">
             <div class="arrow_left" style="top: -11px; left: 70px;"></div>
         </div>
 
@@ -152,10 +379,10 @@
         </div>
 
 
-        <div class="link top540 left240">
+        <div class="link" style="top:540px; left:240px;">
             <div class="arrow_right" style="top: -11px; left: 250px;"></div>
         </div>
-        <div class="link_abstract top540 left360">赤熱鉄管</div>
+        <div class="link_abstract" style="top:540px; left:360px;">赤熱鉄管</div>
 
         <!-- link -->
 
@@ -165,14 +392,14 @@
 
 
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPP84V2NHB"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPP84V2NHB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-            gtag('config', 'G-MPP84V2NHB');
-        </script>
+        gtag('config', 'G-MPP84V2NHB');
+    </script>
 </body>
 
 </html>
